@@ -27,14 +27,16 @@ apps/
 packages/
   shared/         # Shared types, utils, constants — full stack only
 agent_docs/       # Task-specific instructions (see below)
-docs/plans/       # Design docs and implementation plans (Superpowers output)
+docs/
+  research/       # Research and brainstorming docs (Superpowers output)
+  plans/          # Implementation plans (Superpowers output)
 ```
 
 ## Workflow
 
 This project uses the [Superpowers](https://github.com/obra/superpowers) plugin. Every task follows four phases — Superpowers skills handle the process. Do not skip phases.
 
-1. **Research** — Use `superpowers:brainstorming`. Read `agent_docs/`, explore the codebase, ask clarifying questions. Design doc saved to `docs/plans/`.
+1. **Research** — Use `superpowers:brainstorming`. Read `agent_docs/`, explore the codebase, ask clarifying questions. Design doc saved to `docs/research/`.
 2. **Plan** — Use `superpowers:writing-plans`. Break work into small tasks with exact file paths and code. Plan saved to `docs/plans/`.
 3. **Implement** — Use `superpowers:executing-plans` or `superpowers:subagent-driven-development`. Follow TDD (`superpowers:test-driven-development`). Commit after completing implementation.
 4. **Validate** — Use `superpowers:verification-before-completion`. Evidence before claims. All lint, tests, and build must pass. Use `superpowers:finishing-a-development-branch` to merge or PR.

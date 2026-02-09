@@ -95,7 +95,7 @@ Install the Superpowers plugin:
 
 | Phase | Superpowers skill | Output |
 |-------|------------------|--------|
-| Research | `brainstorming` | Design doc in `docs/plans/` |
+| Research | `brainstorming` | Design doc in `docs/research/` |
 | Plan | `writing-plans` | Implementation plan in `docs/plans/` |
 | Implement | `executing-plans`, `test-driven-development` | Working code with tests |
 | Validate | `verification-before-completion`, `finishing-a-development-branch` | Passing lint/tests/build, merge or PR |
