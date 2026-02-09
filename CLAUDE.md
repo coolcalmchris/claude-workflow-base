@@ -30,16 +30,18 @@ agent_docs/       # Task-specific instructions (see below)
 docs/
   research/       # Research and brainstorming docs (Superpowers output)
   plans/          # Implementation plans (Superpowers output)
+  decisions/      # Architectural Decision Records (ADRs)
+.github/workflows/ # CI pipeline (lint, test, build)
 ```
 
 ## Workflow
 
 This project uses the [Superpowers](https://github.com/obra/superpowers) plugin. Every task follows four phases — Superpowers skills handle the process. Do not skip phases.
 
-1. **Research** — Use `superpowers:brainstorming`. Read `agent_docs/`, explore the codebase, ask clarifying questions. Design doc saved to `docs/research/`.
+1. **Research** — Use `superpowers:brainstorming`. Read `agent_docs/`, explore the codebase, ask clarifying questions. Design doc saved to `docs/research/`. Create an ADR in `docs/decisions/` for any decision with meaningful alternatives.
 2. **Plan** — Use `superpowers:writing-plans`. Break work into small tasks with exact file paths and code. Plan saved to `docs/plans/`.
 3. **Implement** — Use `superpowers:executing-plans` or `superpowers:subagent-driven-development`. Follow TDD (`superpowers:test-driven-development`). Commit after completing implementation.
-4. **Validate** — Use `superpowers:verification-before-completion`. Evidence before claims. All lint, tests, and build must pass. Use `superpowers:finishing-a-development-branch` to merge or PR.
+4. **Validate** — Use `superpowers:verification-before-completion`. Evidence before claims. All lint, tests, and build must pass. CI runs automatically on PRs. Use `superpowers:finishing-a-development-branch` to merge or PR.
 
 ## Git
 
@@ -84,6 +86,7 @@ Before starting a task, consult the relevant doc in `agent_docs/`:
 | `database_schema.md` | Schema changes, migrations, seeding |
 | `service_communication_patterns.md` | API contracts, request/response patterns |
 | `frontend_quality.md` | Accessibility, responsive design, performance, SEO |
+| `dependency_updates.md` | Reviewing Renovate PRs, adding/updating dependencies |
 | `memory_system.md` | Memory architecture, commands, entry format, rules |
 
 ## Memory

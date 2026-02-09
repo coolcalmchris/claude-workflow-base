@@ -37,6 +37,10 @@ The setup command removes unused boilerplate so your project starts clean.
 apps/
   web/              # React SPA (Vite)
 agent_docs/          # Claude task-specific instructions
+docs/
+  research/          # Research and brainstorming docs
+  plans/             # Implementation plans
+  decisions/         # Architectural Decision Records
 ```
 
 A single React application built with Vite. State managed with Zustand. Styled with TailwindCSS utilities and SASS modules. Suitable for static sites, landing pages, or SPAs that consume external APIs.
@@ -50,6 +54,10 @@ apps/
 packages/
   shared/           # Shared types, utils, constants
 agent_docs/          # Claude task-specific instructions
+docs/
+  research/          # Research and brainstorming docs
+  plans/             # Implementation plans
+  decisions/         # Architectural Decision Records
 ```
 
 ```
@@ -99,6 +107,14 @@ Install the Superpowers plugin:
 | Plan | `writing-plans` | Implementation plan in `docs/plans/` |
 | Implement | `executing-plans`, `test-driven-development` | Working code with tests |
 | Validate | `verification-before-completion`, `finishing-a-development-branch` | Passing lint/tests/build, merge or PR |
+
+### CI Pipeline
+
+GitHub Actions runs **lint**, **test**, and **build** on every push to `main` and every pull request. The workflow lives at `.github/workflows/ci.yml`.
+
+### Architectural Decision Records
+
+Significant architectural decisions are recorded in `docs/decisions/` using a lightweight ADR format. ADRs are created during the Research phase when a decision has meaningful alternatives. See `docs/decisions/000-template.md` for the format.
 
 ### Persistent Memory
 

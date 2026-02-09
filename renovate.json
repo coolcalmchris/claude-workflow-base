@@ -1,0 +1,46 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "schedule": ["before 9am on monday"],
+  "timezone": "America/New_York",
+  "labels": ["dependencies"],
+  "packageRules": [
+    {
+      "description": "Group all patch updates into a single PR",
+      "matchUpdateTypes": ["patch"],
+      "groupName": "patch updates",
+      "automerge": true
+    },
+    {
+      "description": "Group all minor updates into a single PR",
+      "matchUpdateTypes": ["minor"],
+      "groupName": "minor updates"
+    },
+    {
+      "description": "Major updates get individual PRs for careful review",
+      "matchUpdateTypes": ["major"],
+      "separateMinorPatch": true
+    },
+    {
+      "description": "Group all dev dependencies together",
+      "matchDepTypes": ["devDependencies"],
+      "groupName": "dev dependencies",
+      "automerge": true
+    },
+    {
+      "description": "Group Prisma packages together",
+      "matchPackagePatterns": ["^prisma", "^@prisma/"],
+      "groupName": "prisma"
+    },
+    {
+      "description": "Group React ecosystem packages together",
+      "matchPackagePatterns": ["^react", "^@types/react"],
+      "groupName": "react"
+    },
+    {
+      "description": "Group ESLint and Prettier together",
+      "matchPackagePatterns": ["^eslint", "^prettier", "^@typescript-eslint/"],
+      "groupName": "linting"
+    }
+  ]
+}
