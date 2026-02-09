@@ -66,6 +66,10 @@ Blank line between each group.
 - Frontend: use error boundaries for render errors, try/catch for async.
 - Never silently swallow errors. Log or propagate.
 
+## Frontend Quality
+
+All user-facing components must meet accessibility (WCAG 2.1 AA), responsive design, and performance standards. See `agent_docs/frontend_quality.md` for full details, checklist, and testing requirements.
+
 ## Comments
 
 - Don't comment *what* the code does — make the code self-explanatory.

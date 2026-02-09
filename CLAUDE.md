@@ -81,6 +81,7 @@ Before starting a task, consult the relevant doc in `agent_docs/`:
 | `service_architecture.md` | Adding/modifying services or packages |
 | `database_schema.md` | Schema changes, migrations, seeding |
 | `service_communication_patterns.md` | API contracts, request/response patterns |
+| `frontend_quality.md` | Accessibility, responsive design, performance, SEO |
 | `memory_system.md` | Memory architecture, commands, entry format, rules |
 
 ## Memory
