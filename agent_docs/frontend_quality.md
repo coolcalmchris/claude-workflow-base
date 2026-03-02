@@ -39,6 +39,85 @@ Every component must meet [WCAG 2.1 AA](https://www.w3.org/WAI/WCAG21/quickref/?
 - Test with a screen reader (VoiceOver on Mac) for major features
 - Run `axe-core` or Lighthouse accessibility audits during Validate phase
 
+## Modal Patterns
+
+All modals must follow these conventions for consistency and accessibility.
+
+### Close Button
+
+Every modal uses a standardized close button meeting WCAG 2.5.5 touch target size (44×44px):
+
+```tsx
+<button
+  onClick={onClose}
+  className="absolute top-2 right-2 z-10 flex items-center justify-center w-11 h-11 text-text-muted hover:text-text-secondary text-2xl leading-none cursor-pointer focus:outline-none"
+>
+  &times;
+</button>
+```
+
+Key properties:
+- **Size:** `w-11 h-11` (44×44px) — WCAG minimum touch target
+- **Icon:** HTML entity `&times;` at `text-2xl`
+- **Position:** `absolute top-2 right-2 z-10`
+- **Layout:** `flex items-center justify-center` to center the icon
+- **Hover:** Color change only (`text-text-muted` → `text-text-secondary`)
+
+### Click-Outside-to-Close (Backdrop)
+
+Every modal must close when clicking outside the modal content. Use a separate backdrop `<div>` with an `onClick` handler:
+
+```tsx
+<div className="fixed inset-0 z-50 flex items-center justify-center">
+  <div className="absolute inset-0 bg-black/50" onClick={onClose} />
+  <div className="relative ...modal-content-classes...">
+    {/* Modal content */}
+  </div>
+</div>
+```
+
+The backdrop (`bg-black/50`) is a sibling of the modal content, not its parent. The modal content must have `relative` positioning to sit above the backdrop.
+
+## Autocomplete Dropdown Pattern
+
+All type-ahead autocomplete dropdowns must implement keyboard navigation following the ARIA combobox/listbox pattern. This differs from trigger-button dropdowns (which use `useDropdownKeyboard`).
+
+### Keyboard Interactions
+
+| Key | Context | Action |
+|-----|---------|--------|
+| ArrowDown / Tab | Input, suggestions visible | Prevent default, focus first suggestion |
+| ArrowDown | In list | Move to next item |
+| ArrowUp | In list, at first item | Return focus to input |
+| ArrowUp | In list | Move to previous item |
+| Shift+Tab | In list | Return focus to input |
+| Enter | In list, item focused | Select focused item |
+| Escape | In list | Close dropdown, return focus to input |
+
+### Required State and Refs
+
+```tsx
+const [focusedIndex, setFocusedIndex] = useState(-1);
+const searchInputRef = useRef<HTMLInputElement | null>(null);
+const suggestionsListRef = useRef<HTMLUListElement | null>(null);
+```
+
+Reset `focusedIndex` to `-1` whenever the suggestions array changes (via `useEffect`).
+
+### Required ARIA Attributes
+
+- Suggestion list: `role="listbox"`, `onKeyDown` handler
+- Each item: `role="option"`, `aria-selected={i === focusedIndex}`, `tabIndex={i === focusedIndex ? 0 : -1}`
+- Focused item highlight: `bg-primary/10`
+
+### Focus Management
+
+Use a `useEffect` on `focusedIndex` to scroll the focused item into view and call `.focus()` on the interactive element (button or link) inside the list item.
+
+## Dropdown Background Color
+
+All dropdown containers (autocomplete, select-like, filter popover) must use `bg-bg` as the background class. Never use `bg-card`, `bg-surface`, or omit the background — this ensures consistent contrast and theme support across all dropdowns.
+
 ## Responsive Design
 
 All layouts must work across mobile (320px), tablet (768px), and desktop (1024px+).
@@ -75,6 +154,14 @@ Follow Tailwind defaults:
 ## Performance
 
 Target: Lighthouse scores of 90+ across all categories (Performance, Accessibility, Best Practices, SEO).
+
+### Card Image Corner Treatment
+
+If your project displays card images (e.g., trading cards, game cards), wrap them in a component that applies `overflow-hidden` and a size-responsive `border-radius`:
+
+- Do NOT put `border-radius` on the `<img>` itself — the container clips the corners
+- Scale the border-radius with the rendered width via ResizeObserver (e.g., 4px–18px)
+- Apply to all sizes: full cards, grid thumbnails, modal previews
 
 ### Images
 

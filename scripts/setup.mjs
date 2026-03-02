@@ -163,7 +163,13 @@ async function main() {
   run('git add -A');
   run(`git commit -m "chore: scaffold project (${mode})"`);
 
-  console.log(`\n  Setup complete! Run \`npm run dev\` to start.\n`);
+  console.log(`\n  Setup complete!\n`);
+  console.log(`  Next steps:\n`);
+  console.log(`  1. Open Claude Code in this directory`);
+  console.log(`  2. Install the Superpowers plugin (required for workflow):\n`);
+  console.log(`     /plugin marketplace add obra/superpowers-marketplace`);
+  console.log(`     /plugin install superpowers@superpowers-marketplace\n`);
+  console.log(`  3. Run \`npm run dev\` to start developing.\n`);
 }
 
 main().catch((err) => {

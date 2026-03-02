@@ -27,6 +27,15 @@ This will prompt you to select either:
 - **Frontend only** — React SPA with Vite, TailwindCSS, and SASS. No backend or database.
 - **Full stack** — React SPA + Express API + shared types package + Prisma (PostgreSQL).
 
+3. Install the Superpowers plugin in Claude Code (required for the phased workflow):
+
+```
+/plugin marketplace add obra/superpowers-marketplace
+/plugin install superpowers@superpowers-marketplace
+```
+
+4. Start developing: `npm run dev`
+
 **What setup does:**
 - Scaffolds the full project structure (apps, packages, configs)
 - Detects the directory name and uses it as the project name
@@ -188,16 +197,7 @@ Related packages (React, Prisma, linting tools) are updated together to prevent 
 
 ## Claude Code Workflow
 
-This project is designed for development with [Claude Code](https://docs.anthropic.com/en/docs/claude-code) and the [Superpowers](https://github.com/obra/superpowers) plugin.
-
-### Setup
-
-Install the Superpowers plugin:
-
-```
-/plugin marketplace add obra/superpowers-marketplace
-/plugin install superpowers@superpowers-marketplace
-```
+This project is designed for development with [Claude Code](https://docs.anthropic.com/en/docs/claude-code) and the [Superpowers](https://github.com/obra/superpowers) plugin. See Getting Started step 3 for plugin installation.
 
 ### Workflow Phases
 
